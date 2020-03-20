@@ -1,0 +1,6 @@
+[0319/174038.430:ERROR:file_io.cc(89)] ReadExactly: expected 36, observed 0
+[0320/103711.672:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0320/103711.674:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0320/103712.363:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0320/103712.365:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0320/103712.365:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
