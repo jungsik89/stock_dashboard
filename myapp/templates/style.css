@@ -1,0 +1,66 @@
+
+
+#navbar-master
+{
+
+	
+}
+
+#main-landing{
+	background-color:white;
+	position:left-side;
+	
+}
+
+#side-landing{
+	background-color:white;
+	position:right-side;
+}
+
+
+#landing-border{
+	
+	padding:0px;
+	border-style:solid;
+	background-color: white;
+	
+}
+
+#footer-page{
+	
+	background-color:#383838;
+}
+
+.container{
+	
+	display: grid;
+	padding:25px;
+	float:left;
+	max-width: 100%;
+	justify-content: space-evenly;
+	
+}
+
+#visual-container{
+	float:right;
+}
+
+.panel-row-image{
+	
+	width: 100%;
+}
+
+.col-4{
+	
+}
+.col-8{
+	
+}
+
+#row-image{
+	
+	width:100%;
+	float:center;
+	
+}
+	

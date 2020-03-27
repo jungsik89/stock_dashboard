@@ -4,14 +4,56 @@
   <meta charset="UTF-8">
   <title>Mission to Mars</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body>
+<nav class="navbar navbar-dark bg-dark" id="navbar-master">
+      <a class="navbar-brand pl-4 pr-4" href="./index.html">Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> 
+    
+    <!--Nav Collapse-->
+      <div class="collapse navbar-collapse offset-9" id="navbar-content">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-home">
+            <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-comparison">
+            <a class="nav-link" href="./Comparison_page.html">Comparison</a>
+          </li>
+          <li class="nav-dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbar-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Plots
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbar-dropdown">
+              <a class="dropdown-item" href="./MaxTemp_page.html">Max Temp</a>
+              <a class="dropdown-item" href="./Cloudiness_page2.html">Cloudiness</a>
+              <a class="dropdown-item" href="./Humidity_page.html">Humidity</a>
+              <a class="dropdown-item" href="./Windspeed_page.html">Windspeed</a>
+            </div>
+          </li>
+          <li class="nav-data">
+            <a class="nav-link" href="./Data_page.html">Data</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
   <div class="container">
 
     <div class="jumbotron text-center">
       <h1>Stock Data Learner</h1>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape new Data!</a></p>
+    
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="stockInput">Stock</label>
+          <input type="text" class="form-control" id="stockInput" placeholder="Enter a stock">
+        </div>
+        <button id="submit" type="submit" class="btn btn-default">Plot Stock</button>
+      </form>
 	  <p><a class="btn btn-primary btn-lg" href="/search" role="button">Search new Stock!</a></p>
     </div>
 
@@ -20,10 +62,10 @@
       <div class="col-md-12">
         <h2>Latest Buzz</h2>
 
-            {% for x in query_mars %}
-            <h1>{{ x.news_title }}</h1>
-            <p>{{ x.news_paragraph }}</p>
-            {% endfor %}
+            <!-- {% for x in query_mars %} -->
+            <!-- <h1>{{ x.news_title }}</h1> -->
+            <!-- <p>{{ x.news_paragraph }}</p> -->
+            <!-- {% endfor %} -->
       </div>
   
   
@@ -44,80 +86,21 @@
 					  </div>
 					</div>
 			  </div>
-          <div class="col-md-6">
+          <div class="col-md-10">
             <h2>Featured Chart</h2>
+                <div id="plot">
+           
     
-                {% for x in query_mars %}
+                <!-- {% for x in query_mars %}
                 <img src= "{{ x.image_url }}" style='height: 100%; width: 100%; object-fit: contain'>
-                {% endfor %}
+                {% endfor %} -->
+                
+            </div>
           </div>
 
-                {% for x in query_mars %}
-            <div class="col-md-4">
-              <h4>Forecast Exclusive</h4>
-              <p>{{ x.weather }}</p>
-              <br>
-              <br>
-              {% endfor %}               
-              <h4>Stocks Fact</h4>
-              <hr>
-              <table border="1" class="dataframe">
-                <thead>
-                  <tr style="text-align: right;">
-                    <th></th>
-                    <th>Description</th>
-                    <th>Facts</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th>0</th>
-                    <td>Equatorial Diameter:</td>
-                    <td>6,792 km</td>
-                  </tr>
-                  <tr>
-                    <th>1</th>
-                    <td>Polar Diameter:</td>
-                    <td>6,752 km</td>
-                  </tr>
-                  <tr>
-                    <th>2</th>
-                    <td>Mass:</td>
-                    <td>6.39 × 10^23 kg (0.11 Earths)</td>
-                  </tr>
-                  <tr>
-                    <th>3</th>
-                    <td>Moons:</td>
-                    <td>2 (Phobos &amp; Deimos)</td>
-                  </tr>
-                  <tr>
-                    <th>4</th>
-                    <td>Orbit Distance:</td>
-                    <td>227,943,824 km (1.38 AU)</td>
-                  </tr>
-                  <tr>
-                    <th>5</th>
-                    <td>Orbit Period:</td>
-                    <td>687 days (1.9 years)</td>
-                  </tr>
-                  <tr>
-                    <th>6</th>
-                    <td>Surface Temperature:</td>
-                    <td>-87 to -5 °C</td>
-                  </tr>
-                  <tr>
-                    <th>7</th>
-                    <td>First Record:</td>
-                    <td>2nd millennium BC</td>
-                  </tr>
-                  <tr>
-                    <th>8</th>
-                    <td>Recorded By:</td>
-                    <td>Egyptian astronomers</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                <!-- {% for x in query_mars %} -->
+          
+           
     </div>
   </div>          
 
@@ -135,23 +118,24 @@
 
   </div>
 
-  {% for x in query_mars %}
-  <div class="row">
-    <div class="col">
-      <img src= "{{ x.hemi_url[0] }}" style='height: 50%; width: 50%; object-fit: contain'>
+  <!-- {% for x in query_mars %} -->
+  <div class="container">
+    <div class="row">
+        <div class="col-md-3" id="plot1">
+          <!-- <img src= "" style='height: 50%; width: 50%; object-fit: contain'> -->
+        </div>
+        <div class="col-md-3" id="plot2">
+          <img src= "" style='height: 50%; width: 50%; object-fit: contain'>
+        </div>
+        <div class="col-md-3" id="plot3">
+          <img src= "" style='height: 50%; width: 50%; object-fit: contain'>
+        </div>
+        <div class="col-md-3" id="plot4">
+          <img src= "" style='height: 50%; width: 50%; object-fit: contain'>
+        </div>
     </div>
-    <div class="col">
-      <img src= "{{ x.hemi_url[1] }}" style='height: 50%; width: 50%; object-fit: contain'>
-    </div>
-    <div class="w-100"></div>
-    <div class="col">
-      <img src= "{{ x.hemi_url[2] }}" style='height: 50%; width: 50%; object-fit: contain'>
-    </div>
-    <div class="col">
-      <img src= "{{ x.hemi_url[3] }}" style='height: 50%; width: 50%; object-fit: contain'>
-    </div>
-  </div>
-  {% endfor %}
+</div>
+  <!-- {% endfor %} -->
   
 
   
@@ -165,7 +149,10 @@
 
        
 
-         
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="../static/js/plots.js"></script>     
+  <!-- <script src="../static/js/app.js"></script>        -->
     
 
 </body>
