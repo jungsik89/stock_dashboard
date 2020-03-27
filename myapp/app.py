@@ -1,10 +1,18 @@
-from flask import Flask, render_template
-from splinter import Browser
-from bs4 import BeautifulSoup as bs
+from flask import (
+    Flask,
+    render_template,
+    jsonify,
+    request,
+    redirect)
 import scrape_mars
 import pymongo
+import os
+import numpy as np
+import requests
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+
 
 conn = "mongodb://127.0.0.1:27017"
 client = pymongo.MongoClient(conn)
@@ -34,6 +42,18 @@ def search_data():
 
 
         return "done search"
+
+@app.route("/getStock", methods=["GET", "POST"])
+def getBook():
+    if request.method == "POST":
+        
+        stockName = request.form["stock"]
+        query_new = scrape_stocks.getData(stockName)
+        db.info_stock.update({}, query_new, upsert=True)
+        
+
+            
+    return render_template("index.html")
   
 if __name__ == "__main__":
     app.run(debug=True)
