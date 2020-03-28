@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 
-  <title>Mission to Mars</title>
+  <title>Stock Data Dashboard</title>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
@@ -20,7 +20,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/scrape">Scrape News</a>
@@ -81,24 +81,29 @@
       <div class="container">
         <div class="row">
 			    <div class="col-md-12">
-            <h2>Featured Chart</h2>
+            <h2>Featured Stock</h2>
                 <div id="plot">
              
-                <h1>{{query_new}}</h1>
+                <h1>{{ query_new.stock }}</h1>
+                
+                <h4>CandleStick</h4>
+                <img src= "{{ query_new.ohlc_mpf }}" style='height: 50%; width: 100%; object-fit: contain'>
+                
+                <h4>High,Low,Close</h4>
+                <img src= "{{ query_new.ocl }}" style='height: 50%; width: 100%; object-fit: contain'>
 
-                  <h4>Closing Prices</h4>
-                 <img src= "../static/img/ohlc_mpf.png" style='height: 50%; width: 100%; object-fit: contain'>
-                 <h4>Candlestick</h4>
-                 <img src= "../static/img/5d-wk-close.jpeg" style='height: 50%; width: 100%; object-fit: contain'>
-                 <h4>10 week MVA vs Closing Price</h4>
-                 <img src= "../static/img/20d-wk-close.jpeg" style='height: 50%; width: 100%; object-fit: contain'>
-                 <h4>40 week MVA vs Closing Price</h4>
-                 <img src= "../static/img/ohlc.jpeg" style='height: 50%; width: 100%; object-fit: contain'>
-    
-                
-                <img src= "" style='height: 100%; width: 100%; object-fit: contain'>
+                <h4>Volume by Weekly</h4> 
+                <img src= "{{ query_new.wkly_vol }}" style='height: 50%; width: 100%; object-fit: contain'>
+
+                <h4>10,40 Week MVA</h4>
+                <img src= "{{ query_new.week_ma }}" style='height: 50%; width: 100%; object-fit: contain'>
+
+                <h4>5 Day MVA</h4>
+                <img src= "{{ query_new['5dmva'] }}" style='height: 50%; width: 100%; object-fit: contain'>
               
-                
+                <h4>20 Day MVA</h4>
+                <img src= "{{ query_new['20dmva'] }}" style='height: 50%; width: 100%; object-fit: contain'>
+
             </div>
           </div>
 

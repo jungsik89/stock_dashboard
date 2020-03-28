@@ -16,7 +16,12 @@ import mplfinance as mpf
 import matplotlib.dates as mdates
 
 
-
+ohlc_url = 'static/img/ohlc_mpf.png'
+mva5d_url = 'static/img/5d-wk-close.png'
+mva20d_url = 'static/img/20d-wk-close.png'
+mvawks_url = 'static/img/wk-close-ma.png'
+ocl_url = 'static/img/ohlc.png'
+weekly_vol_url = 'static/img/volume_weekly.png'
 
 
 
@@ -71,6 +76,8 @@ def getStock(target_stock):
     x_axis_vol_weekly = df2_weekly_clean['Volume']
     y_axis = df2_weekly_clean['Date']
     x_axis_ma = df2_weekly_clean['TenWeek']
+    
+    #weekly volume
     figure, ax = plt.subplots()
     ax.yaxis.set_major_formatter(formatter)
     ax.bar(y_axis,x_axis_vol_weekly,color='b',label='Volume by Weekly')
@@ -84,7 +91,9 @@ def getStock(target_stock):
     figure.set_figwidth(60)
     plt.legend(loc='best',prop={'size':40})
     ax.tick_params(axis='both', labelsize=40,size=80)
-    plt.savefig("static/img/volume_weekly.png")
+    plt.savefig(weekly_vol_url)
+    
+    #moving averages
     x_axis_5d = df2['Close_5d_ma']
     x_axis_10d = df2['Close_10d_ma']
     x_axis_20d = df2['Close_20d_ma']
@@ -92,26 +101,30 @@ def getStock(target_stock):
     x_axis_40week = df2['Close_40wk_ma']
     x_axis_close = df2['Close']
     y_axis = df2['Date']
+    
+    #moving average 20 days
     figure, ax = plt.subplots(figsize=(50,25))
-    ax.plot(y_axis,x_axis_20d,label='20-Day',linewidth=4)
+    ax.plot(y_axis,x_axis_20d,linestyle="--",color='r',label='20-Day',linewidth=4)
     ax.plot(y_axis,x_axis_10week,color='b',label='10-Week MVA',linewidth=4)
-    ax.plot(y_axis,x_axis_40week,color='r',label='40-Week MVA',linewidth=4)
+    ax.plot(y_axis,x_axis_40week,color='purple',label='40-Week MVA',linewidth=4)
     ax.plot(y_axis,x_axis_close,color='green',label='Close Price Ticks',linewidth=4)
     ax.grid(color='white')
-    ax.set_title(f'Closing Price and Moving Average',size = 60)
+    ax.set_title(f'Closing Price and Moving Average (20Days)',size = 60)
     ax.set_xlabel('Date',fontsize = 60)
     ax.set_ylabel('Closing Prices',fontsize = 60)
     ax.set_facecolor('lightblue')
     plt.legend(loc='best',prop={'size':40})
     ax.tick_params(axis='both', labelsize=40,size=75)
-    plt.savefig("static/img/20d-wk-close.png")
+    plt.savefig(mva20d_url)
+    
+    #moving average 5 days
     figure, ax = plt.subplots()
-    ax.plot(y_axis,x_axis_5d,label='5-Day MVA',linewidth=4)
+    ax.plot(y_axis,x_axis_5d,linestyle='--',color='r',label='5-Day MVA',linewidth=4)
     ax.plot(y_axis,x_axis_10week,color='b',label='10-Week MVA',linewidth=4)
-    ax.plot(y_axis,x_axis_40week,color='r',label='40-Week MVA',linewidth=4)
+    ax.plot(y_axis,x_axis_40week,color='purple',label='40-Week MVA',linewidth=4)
     ax.plot(y_axis,x_axis_close,color='green',label='Close Price Ticks',linewidth=4)
     ax.grid(color='white')
-    ax.set_title(f'Closing Price and Moving Average',size = 60)
+    ax.set_title(f'Closing Price and Moving Average (5Days)',size = 60)
     ax.set_xlabel('Date',fontsize = 60)
     ax.set_ylabel('Closing Prices',fontsize = 60)
     ax.set_facecolor('lightblue')
@@ -119,7 +132,10 @@ def getStock(target_stock):
     figure.set_figwidth(50)
     plt.legend(loc='best',prop={'size':40})
     ax.tick_params(axis='both', labelsize=40,size=75)
-    plt.savefig("static/img/5d-wk-close.png")
+    plt.savefig(mva5d_url)
+    
+
+    #Open High Close
     x_axis_open = df2['Open']
     x_axis_high = df2['High']
     x_axis_low = df2['Low']
@@ -128,7 +144,7 @@ def getStock(target_stock):
     figure, ax = plt.subplots()
     ax.scatter(y_axis,x_axis_high,marker="o",color='r',label='High',s=80)
     ax.scatter(y_axis,x_axis_low,marker='X',color='g',label='Low',s=100)
-    ax.plot(y_axis,x_axis_close,label='Close',linewidth=2)
+    ax.plot(y_axis,x_axis_close,label='Close',linewidth=4)
     ax.grid(color='white')
     ax.set_title(f'Open, High, Low, Close',size = 60)
     ax.set_xlabel('Date',fontsize = 40)
@@ -138,34 +154,37 @@ def getStock(target_stock):
     figure.set_figwidth(40)
     plt.legend(loc='best',prop={'size':40})
     ax.tick_params(axis='both', labelsize=40, size=75)
-    plt.savefig("static/img/ohlc.png")
+    plt.savefig(ocl_url)
+
+
+
+
+    #ohlc MPF#
     df3 = df2[['Open','High','Low','Close','Volume']]
+    
     mpf.plot(df3[:100], figratio=(45,15),figscale=0.5, type='candle', style='charles',
             title=f'{pstock} Analysis',
             ylabel='Price ($)',
             ylabel_lower='Shares \nTraded',
             volume=True, 
             mav=(20,40), 
-            savefig='static/img/ohlc_mpf.png')
+            savefig=f'{ohlc_url}')
+
+
+
     df2.to_csv("data/df2.csv")
     df2_weekly_clean.to_csv("data/df2_weekly_clean.csv")
     
-#     to_database = {
-#         "5dmva": 
-#         "20dmva":
-#         "10mva": news_title,
-#         "40mva": news_p,
-#         "closing": full_image_url,
-#         "opening":mars_weather
+    to_database = {
 
-#     }
-#       scraped_data = {
+        "stock":pstock,
+        "wkly_vol":weekly_vol_url,
+        "5dmva": mva5d_url,
+        "20dmva": mva20d_url,
+        "week_ma": mvawks_url,
+        "ocl": ocl_url,
+        "ohlc_mpf":ohlc_url
 
-#         "news_title": news_title,
-#         "news_paragraph": news_p,
-#         "image_url": full_image_url,
-#         "mars_info":mars_weather
-
-#     }
+    }
     
-    return target_stock
+    return to_database
