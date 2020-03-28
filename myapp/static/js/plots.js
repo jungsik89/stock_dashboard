@@ -23,11 +23,11 @@ function unpack(rows, index) {
 }
 
 
-d3.csv("../df.csv").then(function(data) {
-  console.log(data)
-  console.log(data[0])
+// d3.csv("../df.csv").then(function(data) {
+//   console.log(data)
+//   console.log(data[0])
 
-});
+// });
 
 function buildPlot() {
   d3.csv("df.csv").then(function(data) {
@@ -79,7 +79,7 @@ buildPlot();
 
 function drawChart() {
 
-	d3.csv("../df.csv").then(function(prices) {
+	d3.csv("../../data/df2.csv").then(function(prices) {
 		
 		const months = {0 : 'Jan', 1 : 'Feb', 2 : 'Mar', 3 : 'Apr', 4 : 'May', 5 : 'Jun', 6 : 'Jul', 7 : 'Aug', 8 : 'Sep', 9 : 'Oct', 10 : 'Nov', 11 : 'Dec'}
 
