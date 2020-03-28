@@ -24,6 +24,7 @@ mva20d_url = 'static/img/20d-wk-close.png'
 mvawks_url = 'static/img/wk-close-ma.png'
 ocl_url = 'static/img/ohlc.png'
 weekly_vol_url = 'static/img/volume_weekly.png'
+dr_url = 'static/img/dr.png'
 
 @app.route("/")
 def home():
@@ -36,7 +37,8 @@ def home():
         "20dmva": mva20d_url,
         "week_ma": mvawks_url,
         "ocl": ocl_url,
-        "ohlc_mpf":ohlc_url
+        "ohlc_mpf":ohlc_url,
+        "dr":dr_url
 
     }
     return render_template("index.html",query_new=query_new)

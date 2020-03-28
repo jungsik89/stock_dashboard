@@ -54,20 +54,6 @@
 </div>
 </div>
 </div>
-
-
-
-
-
-    <!-- <form method="POST" action="/getBook" role="form", name="bookInfo">
-      <div class="form-group">
-          <label for="inputTitle">Book Title</label>
-          <input type="text" class="form-control" id="inputTitle" name="title" placeholder="Name">
-      </div>
-      <button type="button" class="btn btn-light">
-      <input type="submit" value="Submit" class="btn btn-default">
-      </button>
-  </form> -->
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -86,8 +72,7 @@
              
                 <h1>{{ query_new.stock }}</h1>
                 
-                <h4>CandleStick</h4>
-                <img src= "{{ query_new.ohlc_mpf }}" style='height: 50%; width: 100%; object-fit: contain'>
+               
                 
                 <h4>High,Low,Close</h4>
                 <img src= "{{ query_new.ocl }}" style='height: 50%; width: 100%; object-fit: contain'>
@@ -103,6 +88,12 @@
               
                 <h4>20 Day MVA</h4>
                 <img src= "{{ query_new['20dmva'] }}" style='height: 50%; width: 100%; object-fit: contain'>
+
+                <h4>20 Day MVA</h4>
+                <img src= "{{ query_new['dr'] }}" style='height: 50%; width: 100%; object-fit: contain'>
+
+                <h4>CandleStick</h4>
+                <img src= "{{ query_new.ohlc_mpf }}" style='height: 50%; width: 100%; object-fit: contain'>
 
             </div>
           </div>
@@ -126,11 +117,11 @@
 
   </div>
 
-  <!-- {% for x in query_mars %} -->
+<!--
   <div class="container">
     <div class="row">
         <div class="col-md-3" id="plot1">
-          <!-- <img src= "" style='height: 50%; width: 50%; object-fit: contain'> -->
+          <img src= "" style='height: 50%; width: 50%; object-fit: contain'>
         </div>
         <div class="col-md-3" id="plot2">
           <img src= "" style='height: 50%; width: 50%; object-fit: contain'>
@@ -143,13 +134,7 @@
         </div>
     </div>
 </div>
-  <!-- {% endfor %} -->
-  
-
-  
-  
-  
-          
+-->
 
 
        
@@ -166,26 +151,7 @@
 
 
 
-  <div class="container">
-    <div class="row">
-        <div class="col-md-3" id="plot1">
-          <!-- <img src= "" style='height: 50%; width: 50%; object-fit: contain'> -->
-        </div>
-        <div class="col-md-3" id="plot2">
-          <img src= "" style='height: 50%; width: 50%; object-fit: contain'>
-        </div>
-        <div class="col-md-3" id="plot3">
-          <img src= "" style='height: 50%; width: 50%; object-fit: contain'>
-        </div>
-        <div class="col-md-3" id="plot4">
-          <img src= "" style='height: 50%; width: 50%; object-fit: contain'>
-        </div>
-    </div>
-</div>
-
-
-
-  <footer>
+ <footer>
     <div>Stock Analysis: BootCamp 2020</div>
 
   </footer>

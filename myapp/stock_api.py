@@ -1,10 +1,8 @@
 import datetime as dt 
 from datetime import date
 import matplotlib.pyplot as plt
-from matplotlib import style
 import pandas as pd
 import quandl
-import pandas_datareader as web
 import numpy as np
 from config import quandl_apikey
 import requests
@@ -22,6 +20,7 @@ mva20d_url = 'static/img/20d-wk-close.png'
 mvawks_url = 'static/img/wk-close-ma.png'
 ocl_url = 'static/img/ohlc.png'
 weekly_vol_url = 'static/img/volume_weekly.png'
+dr_url = 'static/img/dr.png'
 
 
 
@@ -156,18 +155,35 @@ def getStock(target_stock):
     ax.tick_params(axis='both', labelsize=40, size=75)
     plt.savefig(ocl_url)
 
+    #DailyReturn rate
+    x_axis_dr = df2['DailyReturn']
+    y_axis = df2['Date']
+    figure, ax = plt.subplots()
 
+    ax.plot(y_axis,x_axis_dr,color='r',label='DailyReturn',linewidth=2)
+    ax.axhline(linewidth=2, color='b')
+    ax.grid(color='white')
+    ax.set_title(f'DailyReturns (Historical)',size = 60)
+
+    ax.set_xlabel('Date',fontsize = 40)
+    ax.set_ylabel('Return Rate ',fontsize = 40)
+    ax.set_facecolor('lightblue')
+    figure.set_figheight(20)
+    figure.set_figwidth(45)
+    plt.legend(loc='best',prop={'size':40})
+    ax.tick_params(axis='both', labelsize=40, size=75)
+    plt.savefig(dr_url)
 
 
     #ohlc MPF#
     df3 = df2[['Open','High','Low','Close','Volume']]
     
-    mpf.plot(df3[:100], figratio=(45,15),figscale=0.5, type='candle', style='charles',
+    mpf.plot(df3[:100], figratio=(45,15),figscale=0.8, type='candle', style='mike',
             title=f'{pstock} Analysis',
             ylabel='Price ($)',
             ylabel_lower='Shares \nTraded',
             volume=True, 
-            mav=(20,40), 
+            mav=(10,20,40), 
             savefig=f'{ohlc_url}')
 
 
@@ -183,7 +199,8 @@ def getStock(target_stock):
         "20dmva": mva20d_url,
         "week_ma": mvawks_url,
         "ocl": ocl_url,
-        "ohlc_mpf":ohlc_url
+        "ohlc_mpf":ohlc_url,
+        "dr":dr_url
 
     }
     
