@@ -1,5 +1,13 @@
 # stock_dashboard
-Well-Organized Stock Market Dashboard
+Well-Organized Whole Bloody Stock Market Dashboard
 
 Dave Eum
-Project Description: Stock Data Project
+Project Description/Outline: Stock Data Project
+
+Questions:
+
+1. 
+
+Datasets Used:
+
+1.Quandl
