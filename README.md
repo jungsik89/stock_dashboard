@@ -1,7 +1,6 @@
-# stock_dashboard
-Well-Organized Whole Bloody Stock Market Dashboard
+# Well-Organized Whole Bloody Stock Market Dashboard
 
-Dave Eum
+By: Dave Eum
 Project Description/Outline: Stock Data Project
 
 Questions:
